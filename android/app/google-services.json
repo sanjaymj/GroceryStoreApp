@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "3430751841",
+    "firebase_url": "https://dinci-samaan.firebaseio.com",
+    "project_id": "dinci-samaan",
+    "storage_bucket": "dinci-samaan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3430751841:android:42ea0036d792d01b82d420",
+        "android_client_info": {
+          "package_name": "com.example.dinci_samaan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3430751841-moomn3vvlc399sl3uj5j3quud0189lfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_BRPFxXg29c_fec_ySkTHChf_u6mnKzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3430751841-moomn3vvlc399sl3uj5j3quud0189lfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
