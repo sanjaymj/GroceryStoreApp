@@ -1,13 +1,13 @@
-import 'package:dinci_samaan/views/home.dart';
-import 'package:dinci_samaan/views/login-register.dart';
+import 'package:dinci_samaan/models/user.dart';
+import 'package:dinci_samaan/services/firebase-auth.service.dart';
+import 'package:dinci_samaan/views/auth-wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:provider/provider.dart';
 void main() {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
+  
     runApp(new MyApp());
-  });
+  
 }
 final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -15,70 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new StreamBuilder(
-        stream: auth.onAuthStateChanged,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Home();
-          }
-          return LoginRegister();
-        },
-      ),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new Home(),
-        '/login': (BuildContext context) => new LoginRegister()
-      },
-    );
-  }
-}
+    return StreamProvider<User>.value(
+      value: FirebaseAuthService().user,
+      child: MaterialApp(
+        home: AuthWrapper()
+      )
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
