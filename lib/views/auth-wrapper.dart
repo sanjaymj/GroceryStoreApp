@@ -11,7 +11,9 @@ class AuthWrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     }
-    return Home();
+    print('!!!!!!!!!');
+    print(user.uid);
+    return Home(uid: user.uid);
     
   }
 }
