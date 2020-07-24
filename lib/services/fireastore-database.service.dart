@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dinci_samaan/models/GroceryItems.dart';
+import 'package:uuid/uuid.dart';
 
 class FirestoreDatabaseService {
   String uid;
@@ -117,5 +118,23 @@ class FirestoreDatabaseService {
     itemsCollection.snapshots().forEach(_selectAll).then((_val)=> {
       //disable = false
     }); */
+  }
+
+  addNewItem(String itemName, String itemCategory) {
+    var newItem = true;
+
+    Firestore.instance.collection(uid).getDocuments().then((ds) => {
+      if (ds != null) {
+        ds.documents.forEach((value){
+          if (value.data['name'] == itemName && value.data['category'] == itemCategory) {
+              newItem = false;
+              return;
+          }
+        })
+      }});
+    
+    if (newItem) {
+      Firestore.instance.collection(uid).document(Uuid().v1()).setData({'name': itemName, 'isSelected': true, 'category': itemCategory});
+    }
   }
 } 
