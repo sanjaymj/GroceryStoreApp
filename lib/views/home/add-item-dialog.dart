@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dinci_samaan/services/fireastore-database.service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
@@ -62,7 +63,7 @@ class _NewItemDialogState extends State<NewItemDialog> {
                           onPressed: () => {
                             
                             if (this.itemName.isNotEmpty) {
-                              Firestore.instance.collection(widget.uid).document(this.uuid.v1()).setData({'name': this.itemName, 'isSelected': false, 'category': this.itemCategory})
+                              FirestoreDatabaseService(uid:widget.uid).addNewItem(itemName, itemCategory),
                             },
                             Navigator.pop(context)
                           },
