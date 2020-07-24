@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class GroceryItemTile extends StatelessWidget {
 
+  String uid = '';
   final GroceryItem item;
-  GroceryItemTile({this.item});
+  GroceryItemTile({this.uid, this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class GroceryItemTile extends StatelessWidget {
           value: item.isSelected,
           onChanged: (bool value) {
             item.isSelected = value;
-            FirestoreDatabaseService().update(item);
+            FirestoreDatabaseService(uid:this.uid).update(item);
           },
         );
   }

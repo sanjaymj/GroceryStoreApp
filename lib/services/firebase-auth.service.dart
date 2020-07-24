@@ -37,7 +37,7 @@ class FirebaseAuthService{
   Future registerWithEmailAndPassword(String email, String password) async{
     try {
       FirebaseUser user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      await FirestoreDatabaseService(uid:user.uid).updateUserData('0', 'name', 100);
+      //await FirestoreDatabaseService(uid:user.uid).updateUserData('0', 'name', 100);
       return _createUserFromFirebaseUser(user);
     } catch (e) {
       return null;
@@ -46,7 +46,9 @@ class FirebaseAuthService{
 
   Future signInWithEmailAndPassword(String email, String password) async{
     try {
+      print('i am signed in');
       FirebaseUser user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      //await FirestoreDatabaseService(uid:user.uid).updateUserData('0', 'name', 100);
       return _createUserFromFirebaseUser(user);
     } catch (e) {
       return null;

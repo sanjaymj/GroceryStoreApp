@@ -3,6 +3,7 @@ import 'package:dinci_samaan/models/GroceryItems.dart';
 import 'package:dinci_samaan/services/fireastore-database.service.dart';
 import 'package:dinci_samaan/services/firebase-auth.service.dart';
 import 'package:dinci_samaan/views/home/floating-button-wrapper.dart';
+import 'package:dinci_samaan/views/home/overview.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:provider/provider.dart';
@@ -12,12 +13,14 @@ import 'items-list.dart';
 
 
 class Home extends StatelessWidget {
+  String uid;
 
+  Home({this.uid});
   FirebaseAuthService _auth = FirebaseAuthService();
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<GroceryItem>>.value(
-          value: FirestoreDatabaseService().brews,
+          value: FirestoreDatabaseService(uid: this.uid).brews,
           child: Scaffold(
           backgroundColor: Colors.brown[50],
           appBar: AppBar(
@@ -33,8 +36,25 @@ class Home extends StatelessWidget {
                 label: Text('label'))
             ],
           ),
-          body: ItemCategoryList(),
-          floatingActionButton: FloatingButtonWrapper()
+          body: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              bottom: TabBar(
+                tabs: [
+                  Tab(text: 'Select Items'),
+                  Tab(text: 'Overview'),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: [
+                ItemCategoryList(uid: this.uid),
+                OverviewWidget(uid: this.uid),
+              ],
+            ),
+          ),
+      )
         ),
         
     );

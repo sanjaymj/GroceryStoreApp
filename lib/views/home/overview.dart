@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dinci_samaan/services/fireastore-database.service.dart';
 
-class ItemsList extends StatefulWidget {
-  final String currentCategory;
+class OverviewWidget extends StatefulWidget {
   String uid;
-  ItemsList({this.uid, this.currentCategory});
+  OverviewWidget({this.uid});
 
   @override
-  _ItemsListState createState() => _ItemsListState();
+  _OverviewWidgetState createState() => _OverviewWidgetState();
 }
 
-class _ItemsListState extends State<ItemsList> {
+class _OverviewWidgetState extends State<OverviewWidget> {
   @override
   Widget build(BuildContext context) {
     final brews = Provider.of<List<GroceryItem>>(context);
@@ -25,8 +24,10 @@ class _ItemsListState extends State<ItemsList> {
       itemCount: brews.length,
       itemBuilder: (context, index) {
         print(brews[index].category);
-        if(brews[index].category == widget.currentCategory) {
-          return GroceryItemTile(uid: widget.uid, item: brews[index]);
+        if(brews[index].isSelected) {
+          return ListTile(
+            title: Text(brews[index].name),
+          );
         } else {
           return SizedBox.shrink();
         }
