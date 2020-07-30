@@ -17,16 +17,13 @@ class ItemsList extends StatefulWidget {
 class _ItemsListState extends State<ItemsList> {
   @override
   Widget build(BuildContext context) {
-    final brews = Provider.of<List<GroceryItem>>(context);
-    print('#1#1#1#1#1');
-    print(brews);
+    final groceryItems = Provider.of<List<GroceryItem>>(context);
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: brews.length,
+      itemCount: groceryItems.length,
       itemBuilder: (context, index) {
-        print(brews[index].category);
-        if(brews[index].category == widget.currentCategory) {
-          return GroceryItemTile(uid: widget.uid, item: brews[index]);
+        if(groceryItems[index].category == widget.currentCategory) {
+          return GroceryItemTile(uid: widget.uid, item: groceryItems[index]);
         } else {
           return SizedBox.shrink();
         }

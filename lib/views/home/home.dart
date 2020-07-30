@@ -20,31 +20,35 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<GroceryItem>>.value(
-          value: FirestoreDatabaseService(uid: this.uid).brews,
+          value: FirestoreDatabaseService(uid: this.uid).groceryItems,
           child: Scaffold(
-          backgroundColor: Colors.brown[50],
-          appBar: AppBar(
-            title: Text('My app'),
-            backgroundColor: Colors.brown[400],
-            elevation: 0.0,
-            actions: <Widget>[
-              FlatButton.icon(
-                onPressed: () async {
-                  await _auth.signOut();
-                }, 
-                icon: Icon(Icons.person), 
-                label: Text('label'))
-            ],
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(50.0),
+            child: AppBar(
+              title: Text('Dinci Samaan'),
+              elevation: 0.0,
+              actions: <Widget>[
+                FlatButton.icon(
+                  onPressed: () async {
+                    await _auth.signOut();
+                  }, 
+                  icon: Icon(Icons.person), 
+                  label: Text('Sign Out'))
+              ],
+            )
           ),
           body: DefaultTabController(
           length: 2,
           child: Scaffold(
-            appBar: AppBar(
-              bottom: TabBar(
-                tabs: [
-                  Tab(text: 'Select Items'),
-                  Tab(text: 'Overview'),
-                ],
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(50.0),
+              child: AppBar(
+                bottom: TabBar(
+                  tabs: [
+                    Tab(text: 'Select Items'),
+                    Tab(text: 'Overview'),
+                  ],
+                ),
               ),
             ),
             body: TabBarView(

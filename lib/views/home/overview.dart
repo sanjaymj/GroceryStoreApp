@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dinci_samaan/models/GroceryItems.dart';
-import 'package:dinci_samaan/views/home/grocery-item-tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dinci_samaan/services/fireastore-database.service.dart';
 
 class OverviewWidget extends StatefulWidget {
   String uid;
@@ -16,17 +13,14 @@ class OverviewWidget extends StatefulWidget {
 class _OverviewWidgetState extends State<OverviewWidget> {
   @override
   Widget build(BuildContext context) {
-    final brews = Provider.of<List<GroceryItem>>(context);
-    print('#1#1#1#1#1');
-    print(brews);
+    final groceryItems = Provider.of<List<GroceryItem>>(context);
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: brews.length,
+      itemCount: groceryItems.length,
       itemBuilder: (context, index) {
-        print(brews[index].category);
-        if(brews[index].isSelected) {
+        if(groceryItems[index].isSelected) {
           return ListTile(
-            title: Text(brews[index].name),
+            title: Text(groceryItems[index].name),
           );
         } else {
           return SizedBox.shrink();

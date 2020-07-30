@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: FirebaseAuthService().user,
       child: MaterialApp(
-        home: AuthWrapper()
+        home: AuthWrapper(),
       )
 
     );

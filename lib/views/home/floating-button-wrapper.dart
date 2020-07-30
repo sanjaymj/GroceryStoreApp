@@ -1,11 +1,19 @@
 import 'package:dinci_samaan/services/fireastore-database.service.dart';
 import 'package:dinci_samaan/views/home/add-item-dialog.dart';
+import 'package:dinci_samaan/views/home/user-alert-dialog.dart';
 import 'package:flutter/material.dart';
 
 class FloatingButtonWrapper extends StatelessWidget {
 
   String uid;
   FloatingButtonWrapper({this.uid});
+  deSelectAll() {
+    FirestoreDatabaseService(uid: uid).deSelectAll();
+  }
+
+  selectAll() {
+    FirestoreDatabaseService(uid: uid).selectAll();
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +23,12 @@ class FloatingButtonWrapper extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: FloatingActionButton(
             onPressed: () {
-              FirestoreDatabaseService().deSelectAll();
+              //FirestoreDatabaseService(uid: uid).deSelectAll();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                return UserAlertDialog(alertText: 'Are you sure you want to deselect all items', callback: this.deSelectAll);
+              });
             },
             child: Icon(Icons.delete),),
         ),),
@@ -36,8 +49,12 @@ class FloatingButtonWrapper extends StatelessWidget {
           alignment: Alignment.bottomRight,
           child: FloatingActionButton(
             onPressed: () {
-              print('heree');
-              FirestoreDatabaseService().selectAll();
+              //FirestoreDatabaseService(uid: uid).selectAll();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                return UserAlertDialog(alertText: 'Are you sure you want to select all items', callback: this.selectAll);
+              });
             },
           child: Icon(Icons.select_all),),
         ),
