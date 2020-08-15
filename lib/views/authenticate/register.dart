@@ -2,6 +2,7 @@ import 'package:dinci_samaan/services/firebase-auth.service.dart';
 import 'package:dinci_samaan/utils/constants.dart';
 import 'package:dinci_samaan/utils/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -23,11 +24,11 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return isLoading ? Loading(): Scaffold(
-      backgroundColor: Colors.blue,
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         elevation: 0.0,
-        title: Text('register In To App'),
+        title: Text('Dinci Samaan'),
         actions: <Widget>[
           FlatButton.icon(
             onPressed: () async {
@@ -37,7 +38,8 @@ class _RegisterState extends State<Register> {
             label: Text('Sign In'))
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
@@ -46,7 +48,7 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 20.0),
               TextFormField(
                 decoration: textFieldDecorator.copyWith(hintText: 'Email'),
-                validator: (val) => val.isEmpty ? 'error' : null, 
+                validator: (val) => !EmailValidator.validate(val) ? 'Email address is invalid' : null, 
                 onChanged: (val) {
                   setState(() {
                     this.email = val;
@@ -56,7 +58,7 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 20.0),
               TextFormField(
                 decoration: textFieldDecorator.copyWith(hintText: 'Password'),
-                validator: (val) => val.length < 6 ? 'short password' : null,
+                validator: (val) => val.length < 6 ? 'Password is too short' : null,
                 obscureText: true,
                 onChanged: (val) {
                   setState(() {
@@ -67,7 +69,7 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.pink,
-                child: Text('Sign In', style: TextStyle(color: Colors.white)),
+                child: Text('Register', style: TextStyle(color: Colors.white)),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     setState(() => isLoading = true);
@@ -84,12 +86,13 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 12.0),
               Text(
                 error,
-                style: TextStyle(color: Colors.green, fontSize: 14.0)
+                style: TextStyle(color: Colors.red[200], fontSize: 20.0)
               )
             ]
           )
         )
       ),
+      )
     );
   }
 }

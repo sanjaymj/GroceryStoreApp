@@ -18,7 +18,7 @@ class ItemCategoryList extends StatefulWidget {
 class _ItemCategoryListState extends State<ItemCategoryList> {
   List<String> _groceryItemCategories(List<GroceryItem> items) {
     final List<String> categories= [];
-    items.forEach((item){
+    items?.forEach((item){
       if (!categories.contains(item.category)) {
         categories.add(item.category);
       }
