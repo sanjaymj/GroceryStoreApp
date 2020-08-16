@@ -1,4 +1,4 @@
-package com.example.dinci_samaan
+package com.huccha.dinci
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

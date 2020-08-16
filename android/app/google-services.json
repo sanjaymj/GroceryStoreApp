@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "3430751841",
-    "firebase_url": "https://dinci-samaan.firebaseio.com",
-    "project_id": "dinci-samaan",
-    "storage_bucket": "dinci-samaan.appspot.com"
+    "project_number": "752858767979",
+    "firebase_url": "https://app-dinci-saman.firebaseio.com",
+    "project_id": "app-dinci-saman",
+    "storage_bucket": "app-dinci-saman.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3430751841:android:42ea0036d792d01b82d420",
+        "mobilesdk_app_id": "1:752858767979:android:f35936871f23ba3fc9c72e",
         "android_client_info": {
-          "package_name": "com.example.dinci_samaan"
+          "package_name": "com.huccha.dinci"
         }
       },
       "oauth_client": [
         {
-          "client_id": "3430751841-moomn3vvlc399sl3uj5j3quud0189lfb.apps.googleusercontent.com",
+          "client_id": "752858767979-hoebietgufulq4ufsgufdn5nrkc6bhfo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_BRPFxXg29c_fec_ySkTHChf_u6mnKzc"
+          "current_key": "AIzaSyARrjaDcRnnA3wnQx1i4rkKTL72hXWQAMM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "3430751841-moomn3vvlc399sl3uj5j3quud0189lfb.apps.googleusercontent.com",
+              "client_id": "752858767979-hoebietgufulq4ufsgufdn5nrkc6bhfo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

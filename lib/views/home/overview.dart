@@ -16,7 +16,7 @@ class _OverviewWidgetState extends State<OverviewWidget> {
     final groceryItems = Provider.of<List<GroceryItem>>(context);
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: groceryItems.length,
+      itemCount: groceryItems?.length,
       itemBuilder: (context, index) {
         if(groceryItems[index].isSelected) {
           return ListTile(
