@@ -1,6 +1,10 @@
 # dinci_samaan
 
-A new Flutter project.
+This is a hybrid mobile application that can be used by users to plan weekely grocerry shopping. The app is developed using flutter frontend and a realtime firstore backend.
+
+## features
+
+The app can authenticate users and register new users if needed. Users can add new grocerry items to their list. Set favorite items, view a summary of added items. The app also provides autocomplete feature when adding new items.
 
 ## Getting Started
 
